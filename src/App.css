@@ -1,38 +1,90 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  align-content: center;
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+  justify-content: flex-start;
+  font-size: calc(30px + 4vmin);
   color: white;
+  /* background-color: red; */
+}
+.atm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+.displayContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.display {
+  display: flex;
+  background-color: cadetblue;
+  flex-direction: row;
+  /* width: 100vw; */
+  border-radius: 1rem;
+  width: 60rem;
+  height: 20rem;
+  border: 0.1rem solid black;
 }
 
-.App-link {
-  color: #61dafb;
+.textContainer {
+  /* background-color: blue; */
+  height: 100%;
+  width: 80%;
+  display: flex;
+}
+.buttonContainer {
+  /* background-color: blue; */
+  align-self: flex-end;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.buttonContainer button {
+  background-color: green;
+  height: 5rem;
+  border-radius: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.atmKeyboard {
+  background-color: silver;
+  /* width: 100vw; */
+  display: grid;
+  grid-template-columns: 10rem 10rem 10rem 20rem;
+  grid-template-rows: 10rem 10rem 10rem 10rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.atmButton {
+  border-radius: 1rem;
+  font-size: 3rem;
+}
+.bigAtmButton {
+  font-size: 2rem;
+  border-radius: 1rem;
+}
+
+.yellow {
+  background: yellow;
+}
+.green {
+  background: green;
+}
+.red {
+  background: red;
 }
