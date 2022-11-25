@@ -41,16 +41,7 @@ function App() {
               </div>
             </div>
           </div>
-          <div
-            style={{
-              width: "53rem",
-              height: "43rem",
-              justifySelf: "center",
-              margin: 0,
-              alignSelf: "center",
-              display: "flex",
-            }}
-          >
+         
             <div className="atmKeyboard">
               {atmButtons.map((button) => {
                 return (
@@ -64,7 +55,6 @@ function App() {
               })}
             </div>
           </div>
-        </div>
       </div>
     </>
   );
