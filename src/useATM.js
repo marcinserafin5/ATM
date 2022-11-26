@@ -19,7 +19,6 @@ const useATM = () => {
     }
   }, [action, accountBalance]);
 
-
   useEffect(() => {
     if (action !== "balance" && action !== "fin") {
       setMainText(value);
@@ -70,6 +69,8 @@ const useATM = () => {
         break;
       case "cancel":
         value > 9 ? setValue(Math.floor(value / 10)) : setValue(0);
+        break;
+      case null:
         break;
       default:
         if (value === 0) setValue(button.value);

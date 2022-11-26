@@ -10,15 +10,22 @@
   justify-items: center;
 }
 
+button {
+  cursor: pointer;
+  border-bottom-width: 5px;
+}
+button:active {
+  border-bottom-width: 2px;
+  transform: translateY(2px);
+}
+
 .App-header {
   display: flex;
   flex-direction: column;
   height: 10vh;
-
   justify-content: flex-start;
-  font-size: calc(30px + 4vmin);
+  font-size:50px;
   color: white;
-  /* background-color: red; */
 }
 .atm {
   display: flex;
@@ -36,69 +43,54 @@
 }
 .display {
   display: flex;
+  justify-content: space-between;
+
   background-color: aliceblue;
-  flex-direction: row;
-  /* width: 100vw; */
-  /* border-radius: 1rem; */
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-
   width: 100%;
-  /* height: 20rem; */
-  /* border: 0.1rem solid black; */
 }
 
 .textContainer {
-  /* background-color: blue; */
   height: 100%;
-  width: 85%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-left: 2%;
-  /* justify-content: space-between; */
 }
-.mainTextContainer{
+.mainTextContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: start;
-  /* background-color: rebeccapurple; */
   height: 80%;
   width: 90%;
 }
-.mainText{
+.mainText {
   font-size: 40px;
   word-wrap: break-word;
-
 }
 
-.sideText{
 
-}
 .buttonContainer {
-  /* background-color: blue; */
   align-self: flex-end;
   height: 100%;
-  /* width: 20%; */
-  /* min-width: 150px; */
   display: flex;
   justify-content: space-around;
   flex-direction: column;
 }
 .buttonContainer button {
-  /* background-color: green; */
   background-color: rgba(0, 0, 0, 0.2);
   height: 30%;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   font-size: 2vh;
+  border-right-width: 0;
 }
 
 .atmKeyboard {
-  /* justify-self: center; */
   background-color: silver;
-  /* width: 100vw; */
   height: 39vh;
   padding-top: 1vh;
   display: grid;
@@ -107,41 +99,62 @@
   gap: 1%;
   padding: 0 1%;
   padding-top: 1%;
-  /* padding: 1; */
 }
 
 .atmButton {
-  border-radius: 1rem;
+  border-radius: 20px;
   font-size: 40px;
 }
 .bigAtmButton {
   font-size: 30px;
-  border-radius: 1rem;
+  border-radius: 20px;
 }
 
 .yellow {
-  background: rgb(192,179,0);
+  background: rgb(192, 179, 0);
 }
 .green {
-  background: rgb(0,142,70);
+  background: rgb(0, 142, 70);
 }
 .red {
-  background: rgb(199,21,27);
+  background: rgb(199, 21, 27);
 }
+
 @media only screen and (max-width: 520px) {
   .atm {
     width: 100%;
   }
-}
-@media only screen and (min-width: 521px)  {
-  .atm {
-    width: 75%;
+  .mainText{
+    font-size: 32px;
   }
 }
 
-@media only screen and (min-width: 821px)  {
+@media only screen and (max-height: 600px) {
+  .App-header {
+    font-size: 35px;
+  }
+  .atm {
+    width: 100%;
+  }
+  .atmButton {
+    font-size: 24px;
+  }
+  .bigAtmButton {
+    font-size: 20px;
+    border-radius: 20px;
+  }
+}
+@media only screen and (min-width: 521px) {
+  .atm {
+    width: 75%;
+  }
+  .mainText{
+    font-size: 35px;
+  }
+}
+
+@media only screen and (min-width: 821px) {
   .atm {
     width: 50%;
   }
 }
-
