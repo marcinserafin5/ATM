@@ -15,13 +15,15 @@ const useATM = () => {
     if (action === "balance") {
       setSideText("");
       setActionText("Account Balance:");
-      setMainText(accountBalance);
+      setMainText(
+        new Intl.NumberFormat("pl-pl").format(accountBalance) + ".00"
+      );
     }
   }, [action, accountBalance]);
 
   useEffect(() => {
     if (action !== "balance" && action !== "fin") {
-      setMainText(value);
+      setMainText(new Intl.NumberFormat("pl-pl").format(value) + ".00");
     }
   }, [value, action]);
 
@@ -67,8 +69,11 @@ const useATM = () => {
             break;
         }
         break;
-      case "cancel":
+      case "remove":
         value > 9 ? setValue(Math.floor(value / 10)) : setValue(0);
+        break;
+      case "cancel":
+        setAction("balance");
         break;
       case null:
         break;
@@ -83,7 +88,6 @@ const useATM = () => {
     actionText,
     sideText,
     mainText,
-
     handleActionButton,
     handleButtonClick,
   ];
