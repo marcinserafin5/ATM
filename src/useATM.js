@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react";
+import ACTIONS from "./consts/actionsConsts";
+import BUTTONS_OPERATION from "./consts/buttonsOperationConsts";
 
 const useATM = () => {
   const [value, setValue] = useState(0);
-  const [action, setAction] = useState("balance");
+  const [action, setAction] = useState(ACTIONS.BALANCE);
   const [accountBalance, setAccountBalance] = useState(0);
   const [actionText, setActionText] = useState("Account Balance:");
   const [sideText, setSideText] = useState(" ");
   const [mainText, setMainText] = useState(accountBalance);
 
   useEffect(() => {
-    if (action !== "balance") setSideText("Account Balance: " + accountBalance);
-    if (action !== "balance" && action !== "fin")
+    if (action !== ACTIONS.BALANCE)
+      setSideText(
+        "Account Balance: " +
+          new Intl.NumberFormat("pl-pl").format(accountBalance) +
+          ".00"
+      );
+    if (action !== ACTIONS.BALANCE && action !== ACTIONS.FINAL)
       setActionText("To " + action + ":");
-    if (action === "balance") {
+    if (action === ACTIONS.BALANCE) {
       setSideText("");
       setActionText("Account Balance:");
       setMainText(
@@ -22,8 +29,13 @@ const useATM = () => {
   }, [action, accountBalance]);
 
   useEffect(() => {
-    if (action !== "balance" && action !== "fin") {
-      setMainText(new Intl.NumberFormat("pl-pl").format(value) + ".00");
+    if (action !== ACTIONS.BALANCE && action !== ACTIONS.FINAL) {
+      if (value > Number.MAX_SAFE_INTEGER) {
+        setMainText("Too much amount");
+        setAction(ACTIONS.FINAL);
+      } else {
+        setMainText(new Intl.NumberFormat("pl-pl").format(value) + ".00");
+      }
     }
   }, [value, action]);
 
@@ -40,40 +52,42 @@ const useATM = () => {
       setAccountBalance(accountBalance - value);
     }
     setActionText("");
-    setAction("fin");
+    setAction(ACTIONS.FINAL);
   };
 
   const depositFunction = () => {
     setMainText("Thank you for deposit the funds");
     setAccountBalance(accountBalance + value);
     setActionText("");
-    setAction("fin");
+    setAction(ACTIONS.FINAL);
   };
 
   const handleButtonClick = (button) => {
     switch (button.value) {
-      case "clear":
+      case BUTTONS_OPERATION.CLEAR:
         setValue(0);
         break;
-      case "submit":
-        switch (action) {
-          case "balance":
-            break;
-          case "withdraw":
-            withdrawFunction();
-            break;
-          case "deposit":
-            depositFunction();
-            break;
-          default:
-            break;
+      case BUTTONS_OPERATION.SUBMIT:
+        if (value > 0) {
+          switch (action) {
+            case ACTIONS.BALANCE:
+              break;
+            case ACTIONS.WITHDRAW:
+              withdrawFunction();
+              break;
+            case ACTIONS.DEPOSIT:
+              depositFunction();
+              break;
+            default:
+              break;
+          }
         }
         break;
-      case "remove":
+      case BUTTONS_OPERATION.REMOVE:
         value > 9 ? setValue(Math.floor(value / 10)) : setValue(0);
         break;
-      case "cancel":
-        setAction("balance");
+      case BUTTONS_OPERATION.CANCEL:
+        setAction(ACTIONS.BALANCE);
         break;
       case null:
         break;

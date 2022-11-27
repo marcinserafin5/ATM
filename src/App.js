@@ -1,6 +1,7 @@
 import "./App.css";
 import useATM from "./useATM";
 import atmButtons from "./consts/buttons";
+import ACTIONS from "./consts/actionsConsts"; 
 
 function App() {
   const [
@@ -8,7 +9,7 @@ function App() {
     sideText,
     mainText,
     handleActionButton,
-    handleButtonCLick,
+    handleButtonClick,
   ] = useATM();
   
   return (
@@ -26,13 +27,13 @@ function App() {
                 </div>
               </div>
               <div className="buttonContainer">
-                <button onClick={() => handleActionButton("withdraw")}>
+                <button onClick={() => handleActionButton(ACTIONS.WITHDRAW)}>
                   WITHDRAW
                 </button>
-                <button onClick={() => handleActionButton("deposit")}>
+                <button onClick={() => handleActionButton(ACTIONS.DEPOSIT)}>
                   DEPOSIT
                 </button>
-                <button onClick={() => handleActionButton("balance")}>
+                <button onClick={() => handleActionButton(ACTIONS.BALANCE)}>
                   BALANCE
                 </button>
               </div>
@@ -43,7 +44,7 @@ function App() {
             {atmButtons.map((button) => {
               return (
                 <button
-                  onClick={() => handleButtonCLick(button)}
+                  onClick={() => handleButtonClick(button)}
                   className={button.style}
                 >
                   {button.label}
